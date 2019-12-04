@@ -1,0 +1,92 @@
+.login {
+    background-color: #F6F6F6;
+    height: calc(100vh);
+}
+
+.sm-Navbar{
+    padding: 10px 15px;
+    background-color: white;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 1px 5px -4px black;
+}
+
+.fflogo {
+    height: 35px;
+    width: 150px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    background-color: white;
+    padding: 40px 40px;
+    margin: 60px 0 120px 0;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 1px 1px 3px -3px black, -1px -1px 3px -3px black;
+}
+
+.login-form h1 {
+    margin-bottom: 30px;
+}
+
+.login-input {
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px;
+}
+
+.login-input input {
+    font-size: 15px;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 15px;
+    height: 40px;
+}
+
+.login-btn-container {
+    margin: 40px 0 40px 0;
+}
+.login-btn {
+    display: block;
+    height: 40px;
+    border: none;
+    background-color: green;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-btn:focus {
+    outline: none;
+}
+
+.login-btn2 {
+    display: block;
+    height: 40px;
+    border: none;
+    background-color: white;
+    color:  black;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-btn2:hover {
+    background-color: #F6F6F6;
+}
+.login-btn2:focus {
+    outline: none;
+}
+

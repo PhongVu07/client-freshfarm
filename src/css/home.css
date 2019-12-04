@@ -1,0 +1,55 @@
+.home {
+  background-color: #f6f6f6;
+  padding: 0;
+}
+
+.home-nav {
+    padding: 10px 0 10px 0;
+    background-color: white;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 1px 5px -4px black;
+}
+.top-navibar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+}
+
+.bigfflogo {
+  height: 60px;
+  position: relative;
+  left: -15px;
+}
+
+.search-icon-nav {
+    width: 40px;
+    font-size: 20px;
+}
+
+.cart-icon-nav {
+    font-size: 30px;
+}
+.input-group.md-form.form-sm.form-2 input {
+  border: 1px solid #bdbdbd;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.input-group.md-form.form-sm.form-2 input.lime-border {
+  border: 1px solid #cddc39;
+}
+
+.product-card-img {
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+.product-card-body {
+  padding: 5px 5px 0 5px;
+}
+
+.product-card-body > p {
+  padding-bottom: 0;
+}

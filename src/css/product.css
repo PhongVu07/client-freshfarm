@@ -1,0 +1,11 @@
+.product-detail {
+    display: flex;
+}
+
+.product-detail-title {
+    flex:1;
+}
+
+.product-detail-content {
+    flex:8;
+}
