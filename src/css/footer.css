@@ -1,0 +1,68 @@
+.footer {
+    background-color: black;
+    padding: 5% 0 !important;
+    color: white;
+}
+
+.sm-footer-title {
+    color: #919496;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: .08em;
+}
+
+.menu-mav ul {
+    padding-inline-start : initial !important;
+}
+
+.footer li {
+    list-style-type: none;
+}
+.foot-link-li {
+    margin: 10% 0;
+}
+
+.foot-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.social-icon { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color : white;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background-color: black;
+}
+
+.facebook:hover {
+    background-color: #3d5b99;
+    color: white;
+}
+.youtube:hover {
+    background-color: #e64a41;
+    color: white;
+}
+.linkedin:hover {
+    background-color: #0073a4;
+    color: white;
+}
+.github:hover {
+    background-color: #5a32a3;
+    color: white;
+}
+
+
+.copy-right {
+    color: #919496;
+}

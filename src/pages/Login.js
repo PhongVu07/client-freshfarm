@@ -15,7 +15,7 @@ export default function Login(props) {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    const url = 'https://127.0.0.1:5000/user/login'
+    const url = 'https://fresh-farm.herokuapp.com/user/login'
     let data = {
       "username" : userName,
       "password" : password
@@ -32,6 +32,7 @@ export default function Login(props) {
     const test = await response.json()
     if (test.state === 'success') {
       props.setCurrentUser(test)
+      sessionStorage.setItem("token", test.token);
       return history.push("/")
     } else {
       alert("Wrong username or password")
@@ -74,7 +75,7 @@ export default function Login(props) {
           <div className="login-question">
             Don't have account? <a href="/register">Sign up</a>
           </div>
-          <a href="https://127.0.0.1:5000/login/facebook">Login by Facebook</a>
+          <a href="https://fresh-farm.herokuapp.com/login/facebook">Login by Facebook</a>
         </form>
       </div>
     </div>

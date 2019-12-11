@@ -1,8 +1,10 @@
 .App {
   margin: 0;
   padding: 0;
-  font-family: helvetica;
   background-color: #F6F6F6;
+  font-family: Helvetica Neue,Helvetica,Arial,\\6587\6CC9\9A5B\6B63\9ED1,WenQuanYi Zen Hei,Hiragino Sans GB,\\5137\9ED1 Pro,LiHei Pro,Heiti TC,\\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei UI,Microsoft JhengHei,sans-serif;
+  color: rgba(0,0,0,.8);
+  line-height: 1.2;
 }
 
 .bgc-white {
@@ -20,4 +22,51 @@ div {
 
 .container-fluid {
   padding: 0 !important;
+}
+
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.ff-secondary-btn {
+  color: #10930F;
+  background-color: #C9FFCD;
+  /* box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 1px 0px; */
+  border: 0.1px solid #12A611;
+  outline: 0;
+  cursor: pointer;
+}
+
+.ff-primary-btn {
+  color: white;
+  background-color: #12A611;
+  /* box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 1px 0px; */
+  outline: 0;
+  cursor: pointer;
+}
+
+.confirm-order-btn {
+  width: 150px;
+  padding: 8px 0 8px 0;
+}
+
+.confirm-order-btn-sm {
+  padding: 5px 10px 5px 10px;
+}
+
+.ff-price {
+  color: #4DA728;
+  font-weight: 550;
 }

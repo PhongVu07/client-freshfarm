@@ -1,0 +1,225 @@
+.user-page {
+    padding-bottom: 1rem !important;
+}
+.user-page-brief {
+    padding: 15px 0px;
+    border-bottom: 1px solid rgb(239, 239, 239);
+}
+
+.user-page-sidebar-menu {
+    cursor: pointer;
+    list-style: none;
+    padding: 0px;
+    margin: 27px 0px 0px;
+}
+
+.user-page-sidebar-menu-item {
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-transform: capitalize;
+    margin-bottom: 18px;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.user-sidebar-icon {
+    width: 22px;
+    margin-right: 8px;
+  
+}
+
+.my-account-session {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding: 0 30px 20px;
+    background: #fff;
+    overflow: visible;
+}
+
+.my-account-session-header {
+    -webkit-box-align: center;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+    padding: 22px 0;
+    height: 80px;
+    box-sizing: border-box;
+}
+
+.my-account-session-header-left {
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+
+.my-account-session-header-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: #333;
+    text-transform: capitalize;
+}
+
+.my-account-session-header-subtitle {
+    font-size: .875rem;
+    line-height: 1.0625rem;
+    color: #555;
+    margin-top: 3px;
+}
+
+.my-account-profile {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 30px;
+    display: flex;
+    -webkit-box-align: start;
+}
+
+.my-account-profile-left {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding-right: 50px;
+}
+
+.input-with-lable-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.input-with-lable-label {
+    width: 20%;
+    text-align: right;
+    color: rgba(85,85,85,.8);
+    text-transform: capitalize;
+    overflow: hidden;
+}
+.input-with-lable-content {
+    width: 80%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 1.25rem;
+}
+.input-with-radio {
+    font-weight: 400;
+    color: rgba(0,0,0,.87);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    padding-left: 1.25rem;
+}
+.input-with-radio-item {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    margin-right: 50px;
+}
+.input-radio-item {
+    margin-right: 15px;
+    margin-top: 0;
+    position: relative;
+    top: -2px;
+}
+
+.my-account-page-submit {
+    width: 80%;
+    padding-left: 1.25rem;
+}
+
+/* cart */
+.my-account-cart-session {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    padding: 0 30px 20px;
+    background: transparent;
+    overflow: visible;
+}
+
+.my-account-cart-header {
+    background-color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    border-radius: .125rem;
+    overflow: hidden;
+
+}
+.purchase-list-page-tab {
+    cursor: pointer;
+    user-select: none;
+    font-size: 1rem;
+    line-height: 1.1875rem;
+    padding: 1rem 0;
+    color: rgba(0,0,0,.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.purchase-list-page-tab-label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.cart-area {
+    background-color: white;
+    min-height: 400px;
+    padding: 5px 15px 0 15px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    border-radius: .125rem;
+    overflow: hidden;
+}
+.cart-table-head {
+    border-bottom: solid 1px #eeeeee;
+}
+
+.cart-table-sm {
+    width: 20%;
+    font-weight: 400;
+}
+
+.cart-table-lg {
+    width: 30%;
+    font-weight: 400;
+}
+th {
+    font-weight: 400;
+}
+.cart-area-empty-icon {
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../img/empty.svg');
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+.order-item-img {
+    width: 100px;
+    height: 100px;
+}
+
+.cart-page-footer {
+    width: 100%;
+    height: 70px;
+    margin-top: 0.75rem;
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.cart-page-footer-row1 {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.checkout {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}

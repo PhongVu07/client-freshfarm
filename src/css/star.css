@@ -1,0 +1,73 @@
+.star-rating {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+}
+  
+.star {
+    cursor: pointer;
+    width: 23px;
+    height: 23px;
+    background-color: grey;
+    -webkit-clip-path: polygon(
+      50% 0%,
+      63% 38%,
+      100% 38%,
+      69% 59%,
+      82% 100%,
+      50% 75%,
+      18% 100%,
+      31% 59%,
+      0% 38%,
+      37% 38%
+    );
+    clip-path: polygon(
+      50% 0%,
+      63% 38%,
+      100% 38%,
+      69% 59%,
+      82% 100%,
+      50% 75%,
+      18% 100%,
+      31% 59%,
+      0% 38%,
+      37% 38%
+    );
+}
+  
+.star-sm {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    background-color: grey;
+    -webkit-clip-path: polygon(
+      50% 0%,
+      63% 38%,
+      100% 38%,
+      69% 59%,
+      82% 100%,
+      50% 75%,
+      18% 100%,
+      31% 59%,
+      0% 38%,
+      37% 38%
+    );
+    clip-path: polygon(
+      50% 0%,
+      63% 38%,
+      100% 38%,
+      69% 59%,
+      82% 100%,
+      50% 75%,
+      18% 100%,
+      31% 59%,
+      0% 38%,
+      37% 38%
+    );
+}
+.star.selected {
+    background-color: orangered;
+}
+.star-sm.selected {
+  background-color: orangered;
+}
