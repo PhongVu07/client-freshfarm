@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "../css/login.css";
 import fflogo from "../img/fflogo.png";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export default function Login(props) {
   const [userName, setUserName] = useState(null)
@@ -73,7 +73,7 @@ export default function Login(props) {
           </div>
 
           <div className="login-question">
-            Don't have account? <a href="/register">Sign up</a>
+            Don't have account? <Link to="/register">Sign up</Link>
           </div>
           <a href="https://fresh-farm.herokuapp.com/login/facebook">Login by Facebook</a>
         </form>
