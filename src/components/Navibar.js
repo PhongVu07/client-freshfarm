@@ -45,9 +45,9 @@ export default function Navibar(props) {
           <div className="">
             <div className="row">
               {!props.currentUser ? (
-                <a className="pr-2 sm-link-home-nav" href="/login">
+                <Link to="/login" className="pr-2 sm-link-home-nav">
                   Log in
-                </a>
+                </Link>
               ) : (
                 <div className="btn-group">
                   <p
