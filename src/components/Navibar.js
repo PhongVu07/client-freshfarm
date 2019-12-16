@@ -1,17 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import fflogo from "../img/fflogo.png";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import cart from "../img/cart.png";
 
 export default function Navibar(props) {
+  const [query, setQuery] = useState(null)
+  const setFilteredProduct = props.setFilteredProduct
   let history = useHistory();
   function exit() {
     history.push("/");
   }
 
+  // console.log(props.currentUser, 'current user navibar');
   const handleLogOut = async () => {
-    const res = await fetch("https://fresh-farm.herokuapp.com/user/logout", {
+    const res = await fetch("https://127.0.0.1:5000/user/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +28,26 @@ export default function Navibar(props) {
         props.setCurrentUser(null);
         history.push("/");
       }
+    }
+  };
+
+  const handleQuery = async () => {
+    const url = `https://127.0.0.1:5000/product/query`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json"
+      },
+      body: JSON.stringify({'query': query})
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data)
+      setFilteredProduct(data);
+      history.push("/category/query")
+      // return <Redirect to='/category/query' />
+    } else {
+      alert("problem query");
     }
   };
 
@@ -63,8 +86,11 @@ export default function Navibar(props) {
                     <Link to="/user/profile" className="dropdown-item">
                       Profile
                     </Link>
-                    <Link to="/user/cart/in_cart" className="dropdown-item">
+                    <Link to="/user/cart" className="dropdown-item">
                       Cart
+                    </Link>
+                    <Link to="/user/invoice/all" className="dropdown-item">
+                      Invoice
                     </Link>
                     <div className="dropdown-divider"></div>
                     <a className="dropdown-item" onClick={handleLogOut}>
@@ -91,19 +117,21 @@ export default function Navibar(props) {
               <input
                 className="form-control my-0 py-1 lime-border"
                 type="text"
-                placeholder="Search"
+                placeholder="Search product"
                 aria-label="Search"
+                onChange={e=>setQuery(e.target.value)}
               />
               <div className="input-group-append">
                 <span
                   className="input-group-text lime lighten-2"
                   id="basic-text1"
+                  onClick={handleQuery}
                 >
                   <MdSearch className="search-icon-nav" />
                 </span>
               </div>
 
-              <Link to="/user/cart/in_cart" className="d-flex justify-content-center align-items-center col-md-1 cart-nav">
+              <Link to="/user/cart" className="d-flex justify-content-center align-items-center col-md-1 cart-nav">
                   <img src={cart} alt="cart" className="cart-icon-nav" />
                   <div className="cart-num-nav">
                     {props.numItemInCart && props.numItemInCart.length}

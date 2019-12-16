@@ -5,7 +5,7 @@ export default function HomeProduct(props) {
   return (
     <div>
       <div className="col-md-12 col-12 home-product-header mt-4">
-          <div className="col-2 col-md-2 home-product-title">{props.title}</div>
+          <Link to={`/category/${props.title}`} className="home-product-title">{props.title}</Link>
       </div>
       <div className="row row-cols-1 row-cols-md-3 mt-1">
         {props.products.map(product => {
@@ -21,7 +21,7 @@ export default function HomeProduct(props) {
                   </Link>
                   <div className="row d-flex justify-content-between mt-2">
                     <p className="ff-price">₫{product.price}</p>
-                    <p className="title-small">{product.store}</p>
+                    <p className="title-small">{product.store_name}</p>
                   </div>
                 </div>
               </div>

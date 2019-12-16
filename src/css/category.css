@@ -1,0 +1,80 @@
+.ff-filter-panel {
+    flex: 0 0 11.875rem;
+    min-width: 0;
+    margin: 0 1.25rem 1.25rem 0;
+}
+.search-filter-status {
+    justify-content: flex-start;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.8);
+    height: 1.875rem;
+    font-weight: 700;
+    font-size: 1rem;
+    align-items: center;
+    display: flex;
+}
+.search-filter-status-text {
+    flex: 1;
+}
+.ff-filter-group {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.09);
+}
+.ff-filter-group-header{
+    text-transform: capitalize;
+    margin-bottom: .625rem;
+    font-weight: 500;
+}
+.ff-filter-group-body {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+.ff-filter-group-star{
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 .75rem;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+.ff-filter-group-star-container {
+    display: flex;
+    align-items: center;
+}
+.ff-filter-star{
+    display: inline-block;
+    width: 6em;
+    height: 1em;
+    position: relative;
+}
+.ff-filter-btn {
+    height: 1.875rem;
+    margin: 1.25rem 0 0;
+    text-transform: uppercase;
+    font-weight: 400;
+    width: 100%;
+    background: white;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: .875rem;
+    line-height: 1;
+    letter-spacing: 0;
+    display: flex;
+    -webkit-box-align: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+.ff-filter-btn-clear {
+    background-color: #359DF7;
+    color: white;
+    font-weight: 600;
+}

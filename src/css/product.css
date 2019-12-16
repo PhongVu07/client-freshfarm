@@ -49,6 +49,9 @@
     height:100%;
     width: 150px;
 }
+.total-price {
+    font-size: 15;
+}
 .total-price-d {
     font-size: 25px;
 }

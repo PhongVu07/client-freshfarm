@@ -64,9 +64,13 @@ p {
 
 .confirm-order-btn-sm {
   padding: 5px 10px 5px 10px;
+  margin-left: 190px;
 }
 
 .ff-price {
   color: #4DA728;
   font-weight: 550;
+}
+.no-cursor {
+  cursor: auto;
 }

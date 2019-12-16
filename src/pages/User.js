@@ -11,7 +11,7 @@ export default function User(props) {
 
   const handleSave = async (e) => {
     e.preventDefault()
-    const url = 'https://fresh-farm.herokuapp.com/user/change_profile'
+    const url = 'https://127.0.0.1:5000/user/change_profile'
     let data = currentUser
     const response = await fetch(url, {
       method : 'POST',
@@ -33,7 +33,13 @@ export default function User(props) {
 
   return (
     <div className="container-fluid user-page">
-      <Navibar currentUser={currentUser} setCurrentUser={setCurrentUser} numItemInCart={props.numItemInCart}/>
+      <Navibar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        numItemInCart={props.numItemInCart}
+        filteredProduct={props.filteredProduct}
+        setFilteredProduct={props.setFilteredProduct}
+      />
 
       <div className="container mt-4 mb-3">
         <div className="row">

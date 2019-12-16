@@ -9,13 +9,12 @@ import StarRating from "../components/StarRating";
 import StarRatingSm from "../components/StarRatingSm";
 import CommentModal from "../components/CommentModal";
 
-
 export default function Product(props) {
   const currentUser = props.currentUser;
   const setCurrentUser = props.setCurrentUser;
   const { productId } = useParams();
   const [product, setProduct] = useState({});
-
+  // console.log(product);
   const [orderItem, setOrderItem] = useState({
     product_id: productId,
     quantity: 0,
@@ -23,7 +22,8 @@ export default function Product(props) {
   });
 
   const [rating, setRating] = useState(null);
-  const [currentUserRating, setCurrentUserRating] = useState(null)
+  const [currentUserRating, setCurrentUserRating] = useState(null);
+  const [boughtThisProduct, setBoughtThisProduct] = useState(false);
   const [starsSelected, setStarSelected] = useState(0);
 
   useEffect(() => {
@@ -31,23 +31,41 @@ export default function Product(props) {
     getRating(productId);
   }, []);
 
+  useEffect(() => {
+    getBuyerId();
+  }, [props.order]);
+
   const getProduct = async id => {
-    const resp = await fetch(`https://fresh-farm.herokuapp.com/product/${id}`);
+    const resp = await fetch(`https://127.0.0.1:5000/product/${id}`);
     const data = await resp.json();
     setProduct(data);
   };
 
   const getRating = async id => {
-    const url = `https://fresh-farm.herokuapp.com/product/${id}/rating`;
+    const url = `https://127.0.0.1:5000/product/${id}/rating`;
     const response = await fetch(url);
     const data = await response.json();
     setRating(data);
     if (currentUser) {
-      const thisUserRating = data && data.filter(el=>el.user_id===currentUser.id)
-      setCurrentUserRating(thisUserRating)
+      const thisUserRating =
+        data && data.filter(el => el.user_id === currentUser.id);
+      setCurrentUserRating(thisUserRating);
     }
-    const totalRating = (data.reduce((total, el) => total + el.rating, 0)/data.length).toFixed(1)
-    setStarSelected(totalRating)
+    const totalRating = (
+      data.reduce((total, el) => total + el.rating, 0) / data.length
+    ).toFixed(1);
+    setStarSelected(totalRating);
+  };
+
+  const getBuyerId = () => {
+    console.log(props.order, 'order');
+    const boughtProductIds =
+      props.order &&
+      props.order
+        .filter(el => el.order_status === "Delivering")
+        .map(el => el.product_id);
+    console.log(boughtProductIds, 'ids');
+    setBoughtThisProduct(boughtProductIds && boughtProductIds.includes(productId));
   };
 
   const handleInputChange = value => {
@@ -75,7 +93,7 @@ export default function Product(props) {
 
   const handleOrderItem = async e => {
     e.preventDefault();
-    const url = "https://fresh-farm.herokuapp.com/user/create_order_item";
+    const url = "https://127.0.0.1:5000/user/create_order_item";
     let data = orderItem;
     const response = await fetch(url, {
       method: "POST",
@@ -102,6 +120,8 @@ export default function Product(props) {
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
         numItemInCart={props.numItemInCart}
+        filteredProduct={props.filteredProduct}
+        setFilteredProduct={props.setFilteredProduct}
       />
       <div className="container mt-4 pt-4 pb-4 bgc-white">
         <div className="row">
@@ -133,6 +153,10 @@ export default function Product(props) {
             </div>
 
             <div className="order-item mt-4 d-flex justify-content-between align-items-center col-md-10 pl-0">
+              {/* <div className="order-item-price border">
+                <div className="align-self-end title-small">Total:</div>
+                <div className="total-price">{orderItem.total_price}₫</div>
+              </div> */}
               <div className="order-item-price border">
                 <div className="align-self-end title-small">Total:</div>
                 <div className="total-price-d">{orderItem.total_price}₫</div>
@@ -186,11 +210,11 @@ export default function Product(props) {
             <div className="mt-4">
               <div className="product-detail">
                 <div className="title-small ">Express</div>
-                <div>from {product.location}</div>
+                <div>from {product.inventory}</div>
               </div>
               <div className="product-detail">
                 <div className="title-small ">Provider</div>
-                <div>{product.store}</div>
+                <div>{product.store_name}</div>
               </div>
             </div>
           </div>
@@ -200,16 +224,23 @@ export default function Product(props) {
       <div className="container pl-0 pr-0">
         <div className="product-rating">
           <div className="product-rating-header">PRODUCT RATING</div>
-          <CommentModal 
-            currentUserRating={currentUserRating}
-            setCurrentUserRating={setCurrentUserRating}
-            getRating={getRating}
-            productId={productId} 
-          />
+          {boughtThisProduct ? (
+            <CommentModal
+              currentUserRating={currentUserRating}
+              setCurrentUserRating={setCurrentUserRating}
+              getRating={getRating}
+              productId={productId}
+            />
+          ) : (
+            <div />
+          )}
+
           <div className="product-rating-overview">
             <div className="product-rating-overview-brief">
               <div className="product-rating-over-view-score">
-                <span className="product-rating-overview-ratescore">{starsSelected}</span>
+                <span className="product-rating-overview-ratescore">
+                  {starsSelected}
+                </span>
                 <span className="product-rating-overview-ratescore2">on 5</span>
               </div>
               <div className="">
@@ -238,11 +269,11 @@ export default function Product(props) {
                       </div>
 
                       <div className="">
-                        <div className="product-comment-author">{comment.user_name}</div>
+                        <div className="product-comment-author">
+                          {comment.user_name}
+                        </div>
                         <div className="product-comment-rating">
-                          <StarRatingSm
-                            starsSelected={comment.rating}
-                          />
+                          <StarRatingSm starsSelected={comment.rating} />
                         </div>
                         <div className="product-comment-content">
                           {comment.comment}

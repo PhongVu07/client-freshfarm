@@ -10,15 +10,22 @@ export default function Home(props) {
   const limitFruit = props.fruit.slice().slice(18);
   const limitVegetable = props.vegetable.slice().slice(18);
   const limitSeasoning = props.seasoning.slice().slice(18);
+
+  const filteredProduct = props.filteredProduct;
+  const setFilteredProduct = props.setFilteredProduct;
   return (
     <div className="container-fluid home">
-      <Navibar currentUser={currentUser} setCurrentUser={setCurrentUser} numItemInCart={props.numItemInCart}/>
-
+      <Navibar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        numItemInCart={props.numItemInCart}
+        filteredProduct={filteredProduct}
+        setFilteredProduct={setFilteredProduct}
+      />
       <div className="container">
-        <HomeProduct products={limitFruit} title="Fruit"/>
-        <HomeProduct products={limitVegetable} title="Vegetable"/>
-        <HomeProduct products={limitSeasoning} title="Seasoning"/>
-
+        <HomeProduct products={limitFruit} title="Fruit" />
+        <HomeProduct products={limitVegetable} title="Vegetable" />
+        <HomeProduct products={limitSeasoning} title="Seasoning" />
       </div>
     </div>
   );

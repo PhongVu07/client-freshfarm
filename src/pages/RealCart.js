@@ -10,46 +10,29 @@ import UserSideBar from "../components/UserSideBar";
 export default function Cart(props) {
   const currentUser = props.currentUser && props.currentUser;
   const setCurrentUser = props.setCurrentUser;
-  const { order_status } = useParams();
   const [orderItems, setOrderItems] = useState(null);
   const totalAmount =
     orderItems && orderItems.reduce((total, el) => total + el.total_price, 0);
-
+    console.log(orderItems);
   useEffect(() => {
     props.getOrder();
-    getOrderItemStatus();
+    getOrderItem();
   }, []);
 
   useEffect(() => {
-    getOrderItemStatus();
-  }, [props.order, order_status]);
+    getOrderItem();
+  }, [props.order]);
 
-  // console.log(props.numItemInCart, 'cart');
-
-  const getOrderItemStatus = () => {
+  const getOrderItem = () => {
     let shallowCopy = props.order && props.order.slice();
-    if (order_status === "in_cart")
-      return setOrderItems(
-        shallowCopy && shallowCopy.filter(el => el.order_status === "In cart")
-      );
-    if (order_status === "delivering")
-      return setOrderItems(
-        shallowCopy &&
-          shallowCopy.filter(el => el.order_status === "Delivering")
-      );
-    if (order_status === "delivered")
-      return setOrderItems(
-        shallowCopy && shallowCopy.filter(el => el.order_status === "Delivered")
-      );
-    if (order_status === "canceled")
-      return setOrderItems(
-        shallowCopy && shallowCopy.filter(el => el.order_status === "Cancel")
-      );
+    setOrderItems(
+      shallowCopy && shallowCopy.filter(el => el.order_status === "In cart")
+    );
   };
 
   const handleDeleteOrderItem = async id => {
-    console.log('detele');
-    const url = `https://fresh-farm.herokuapp.com/user/delete_order_item/${id}`;
+    console.log("detele");
+    const url = `https://127.0.0.1:5000/user/delete_order_item/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
       mode: "cors",
@@ -64,49 +47,54 @@ export default function Cart(props) {
       console.log("order error");
       alert("Error");
     }
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault()
+    const url = 'https://127.0.0.1:5000/user/change_profile'
+    let data = currentUser
+    const response = await fetch(url, {
+      method : 'POST',
+      Access : 'cors',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type': 'text/plain',
+        Authorization: `Token ${sessionStorage.getItem('token')}`
+      },
+      body : JSON.stringify(data)
+    });
+    const test = await response.json()
+    if (test.state === 'success') {
+      alert("saved")
+    } else {
+      alert("Wrong username or password")
+    }
   }
+
   return (
     <div className="container-fluid user-page">
-      <Navibar currentUser={currentUser} setCurrentUser={setCurrentUser} numItemInCart={props.numItemInCart}/>
+      <Navibar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        numItemInCart={props.numItemInCart}
+        filteredProduct={props.filteredProduct}
+        setFilteredProduct={props.setFilteredProduct}
+      />
 
       <div className="container mt-4 mb-3">
         <div className="row">
-          <UserSideBar />
+          <UserSideBar currentUser={currentUser}/>
 
           <div className="my-account-cart-session col-md-10">
             <div>
-              <div className="d-flex justify-content-around my-account-cart-header">
-                <div className="purchase-list-page-tab">
-                  <Link
-                    to="/user/cart/in_cart"
-                    className="purchase-list-page-tab-label col-md-2"
-                  >
+              <div className="my-account-session-header">
+                <div className="my-account-session-header-left">
+                  <div className="my-account-session-header-title mashtb">
                     Cart
-                  </Link>
-                </div>
-                <div className="purchase-list-page-tab">
-                  <Link
-                    to="/user/cart/delivering"
-                    className="purchase-list-page-tab-label col-md-2"
-                  >
-                    Delivering
-                  </Link>
-                </div>
-                <div className="purchase-list-page-tab">
-                  <Link
-                    to="/user/cart/delivered"
-                    className="purchase-list-page-tab-label col-md-2"
-                  >
-                    Delivered
-                  </Link>
-                </div>
-                <div className="purchase-list-page-tab">
-                  <Link
-                    to="/user/cart/canceled"
-                    className="purchase-list-page-tab-label col-md-2"
-                  >
-                    Canceled
-                  </Link>
+                  </div>
+                  <div className="my-account-session-header-subtitle">
+                    {orderItems && orderItems.length} item(s)
+                  </div>
                 </div>
               </div>
 
@@ -123,10 +111,10 @@ export default function Cart(props) {
                           Product
                         </th>
                         <th scope="col" className="cart-table-sm">
-                          Total price
+                          Quantity
                         </th>
                         <th scope="col" className="cart-table-sm">
-                          Status
+                          Total price
                         </th>
                         <th scope="col" className="cart-table-sm"></th>
                       </tr>
@@ -143,9 +131,16 @@ export default function Cart(props) {
                             </th>
                             <td>{orderItem.product_id}</td>
                             <td>{orderItem.product}</td>
+                            <td>{orderItem.quantity}</td>
                             <td>{orderItem.total_price}</td>
-                            <td>{orderItem.order_status}</td>
-                            <td className="title-small" onClick={()=>handleDeleteOrderItem(orderItem.id)}>Delete</td>
+                            <td
+                              className="title-small"
+                              onClick={() =>
+                                handleDeleteOrderItem(orderItem.id)
+                              }
+                            >
+                              Delete
+                            </td>
                           </tr>
                         );
                       })}
@@ -160,12 +155,12 @@ export default function Cart(props) {
               )}
             </div>
 
-            {order_status === "in_cart" && orderItems && orderItems.length > 0 ? (
+            {orderItems && orderItems.length > 0 ? (
               <div className="cart-page-footer">
                 <div className="cart-page-footer-row1">
-                  <div className="d-flex">
-                    <div className="">Total amount:</div>
-                    <div className="">₫{totalAmount}</div>
+                  <div className="d-flex align-item-center">
+                    <div className="cart-page-footer-price">Total amount:</div>
+                    <div className="cart-page-footer-price2">{totalAmount}₫</div>
                   </div>
                   <div className="ml-4">
                     <button
@@ -214,6 +209,9 @@ export default function Cart(props) {
             <div className="modal-body">
               <Elements>
                 <CheckoutForm
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                  handleSave={handleSave}
                   amount={totalAmount}
                   getOrder={props.getOrder}
                   setOrder={props.setOrder}

@@ -1,5 +1,5 @@
 .footer {
-    background-color: black;
+    background-color: #FBFBFB;
     padding: 5% 0 !important;
     color: white;
 }
@@ -25,8 +25,8 @@
 
 .foot-link {
     text-decoration: none;
-    color: white;
-    font-weight: bold;
+    color: #919496;
+    font-weight: 400;
 }
 .social-icon { 
     display: flex;
@@ -42,7 +42,7 @@
     -moz-transition: 0.5s;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    background-color: black;
+    background-color: #919496;
 }
 
 .facebook:hover {

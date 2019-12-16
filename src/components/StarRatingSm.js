@@ -9,7 +9,7 @@ const JustStar = ({ selected = false, onClick = f => f }) => (
 const StarRatingSm = (props) => {
   const numStar = [0, 1, 2, 3, 4];
   
-console.log(props.starsSelected, 'star-sm');
+// console.log(props.starsSelected, 'star-sm');
   return (
     <div className="star-rating">
       {numStar.map((i) => (

@@ -8,20 +8,26 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import User from "./pages/User";
-import Cart from "./pages/Cart";
-import Payment from "./pages/Payment"
+import Invoice from "./pages/Invoice";
+import RealCart from "./pages/RealCart";
+import Payment from "./pages/Payment";
+import Store from "./pages/Store";
+import Store2 from "./pages/Store2";
 import Footer from "./components/Footer";
 
 import { StripeProvider } from "react-stripe-elements";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [fruit, setFruit] = useState([{}]);
   const [vegetable, setVegetable] = useState([{}]);
   const [seasoning, setSeasoning] = useState([{}]);
+  const [filteredProduct, setFilteredProduct] = useState(null);
+  // console.log(fruit, vegetable, seasoning, 'category product');
   const [order, setOrder] = useState(null);
   const [numItemInCart, setNumItemInCart] = useState(0)
-
+  // console.log(order, 'order');
   const existingToken = sessionStorage.getItem("token");
   const accessToken =
     window.location.search.split("=")[0] === "?api_key"
@@ -48,7 +54,7 @@ function App() {
   }
 
   const getCurrentUser = async () => {
-    const url = `https://fresh-farm.herokuapp.com/user/get_user`;
+    const url = `https://127.0.0.1:5000/user/get_user`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {
@@ -72,20 +78,20 @@ function App() {
   };
 
   const getCategoryProdcut = async id => {
-    const url = `https://fresh-farm.herokuapp.com/product/category/${id}`;
+    const url = `https://127.0.0.1:5000/product/category/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     if (id === 1) {
-      setFruit(data);
+      setFruit(data.product);
     } else if (id === 2) {
-      setVegetable(data);
+      setVegetable(data.product);
     } else {
-      setSeasoning(data);
+      setSeasoning(data.product);
     }
   };
 
   const getOrder = async () => {
-    const url = `https://fresh-farm.herokuapp.com/user/get_order`;
+    const url = `https://127.0.0.1:5000/user/get_order`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {
@@ -105,38 +111,80 @@ function App() {
   return (
     <StripeProvider apiKey="pk_test_HGLEAP7M7VfCMagBOu1vTSyA0013x1gxtS">
       <Router>
-        <div className="App">
+        <div className="App pb-5">
           <Switch>
-            <Route path="/user/cart/:order_status">
-              <Cart
+            <Route path="/user/store/product">
+              <Store
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 getOrder={getOrder}
                 order={order}
                 setOrder={setOrder}
                 numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
               />
             </Route>
-            <Route path="/user/profile/payment">
-              <Payment 
+            <Route path="/user/store/business">
+              <Store2
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                getOrder={getOrder}
+                order={order}
+                setOrder={setOrder}
                 numItemInCart={numItemInCart}
-                />
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
+              />
             </Route>
-
+            <Route path="/user/invoice/:order_status">
+              <Invoice
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                getOrder={getOrder}
+                order={order}
+                setOrder={setOrder}
+                numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
+              />
+            </Route>
+            <Route path="/user/cart/">
+              <RealCart
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                getOrder={getOrder}
+                order={order}
+                setOrder={setOrder}
+                numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
+              />
+            </Route>
             <Route path="/user/profile">
               <User 
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
                 />
             </Route>
-
-            
-
-            <Route path="/category/:categoryId">
-              <Categories />
+            <Route path="/category/:category">
+              <Categories 
+                fruit={fruit}
+                vegetable={vegetable}
+                seasoning={seasoning}
+                getCategoryProdcut={getCategoryProdcut}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                getOrder={getOrder}
+                order={order}
+                setOrder={setOrder}
+                numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
+              />
             </Route>
             <Route path="/product/:productId">
               <Product
@@ -146,6 +194,8 @@ function App() {
                 order={order}
                 setOrder={setOrder}
                 numItemInCart={numItemInCart}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
               />
             </Route>
             <Route path="/login">
@@ -163,6 +213,8 @@ function App() {
                 fruit={fruit}
                 vegetable={vegetable}
                 seasoning={seasoning}
+                filteredProduct={filteredProduct}
+                setFilteredProduct={setFilteredProduct}
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 token={token}

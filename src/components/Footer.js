@@ -11,10 +11,10 @@ export default function Footer() {
           <div className="menu-nav col-6 col-sm-6 col-md-4">
             <h6 className="sm-footer-title">MENU</h6>
             <ul>
-              <li className="foot-link-li"><Link className="foot-link" to="/">Home</Link></li>
-              <li className="foot-link-li"><Link className="foot-link" to="/blog">Blog</Link></li>
-              <li className="foot-link-li"><Link className="foot-link" to="/portfolio">Portfolio</Link></li>
-              <li className="foot-link-li"><Link className="foot-link" to="/aboutme">About me</Link></li>
+              <li className="foot-link-li"><Link className="foot-link" to="/">This</Link></li>
+              <li className="foot-link-li"><Link className="foot-link" to="/blog">Is</Link></li>
+              <li className="foot-link-li"><Link className="foot-link" to="/portfolio">Amazing</Link></li>
+              <li className="foot-link-li"><Link className="foot-link" to="/aboutme">Right?</Link></li>
             </ul>
           </div>
 

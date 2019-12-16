@@ -24,6 +24,18 @@
     background-color: transparent;
     font-size: 1rem;
 }
+.user-page-sidebar-menu-item2 {
+    color: #757575;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-transform: capitalize;
+    margin-bottom: 18px;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 1rem;
+    margin-left: 30px;
+}
 
 .user-sidebar-icon {
     width: 22px;
@@ -60,7 +72,9 @@
     color: #333;
     text-transform: capitalize;
 }
-
+.mashtb {
+    font-size: 1.775rem;
+}
 .my-account-session-header-subtitle {
     font-size: .875rem;
     line-height: 1.0625rem;
@@ -137,6 +151,11 @@
     padding: 0 30px 20px;
     background: transparent;
     overflow: visible;
+    /* border: 1px solid red; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    /* border: 1px solid red; */
 }
 
 .my-account-cart-header {
@@ -145,7 +164,6 @@
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
     border-radius: .125rem;
     overflow: hidden;
-
 }
 .purchase-list-page-tab {
     cursor: pointer;
@@ -162,6 +180,15 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.purchase-list2 {
+    width: 100px;
+    margin-bottom: 10px;
+}
+.page-tab-active {
+    border-bottom: 4px solid red;
+    padding-bottom: 5px;
 }
 
 .cart-area {
@@ -211,7 +238,18 @@ th {
     align-items: center;
     justify-content: flex-end;
 }
-
+.cart-page-footer-price {
+    font-size: 20px;
+    margin-right: 10px;
+    display: flex;
+    align-items: flex-end;
+}
+.cart-page-footer-price2 {
+    font-size: 30px;
+    display: flex;
+    align-items: flex-end;
+    color: green;
+}
 .cart-page-footer-row1 {
     display: flex;
     justify-content: flex-end;
@@ -222,4 +260,15 @@ th {
     /* display: flex;
     flex-direction: column;
     align-items: center; */
+}
+
+/* Store */
+.modal-edit-product {
+    width: 70vw;
+}
+.text-area-edit-product{
+    height: 200px;
+}
+.store-chart-name {
+    margin-left: 53vw;
 }
