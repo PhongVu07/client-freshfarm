@@ -32,7 +32,7 @@ export default function Cart(props) {
 
   const handleDeleteOrderItem = async id => {
     console.log("detele");
-    const url = `https://127.0.0.1:5000/user/delete_order_item/${id}`;
+    const url = `https://fresh-farm.herokuapp.com/user/delete_order_item/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
       mode: "cors",
@@ -51,7 +51,7 @@ export default function Cart(props) {
 
   const handleSave = async (e) => {
     e.preventDefault()
-    const url = 'https://127.0.0.1:5000/user/change_profile'
+    const url = 'https://fresh-farm.herokuapp.com/user/change_profile'
     let data = currentUser
     const response = await fetch(url, {
       method : 'POST',

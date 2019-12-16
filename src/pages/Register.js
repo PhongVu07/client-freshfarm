@@ -15,7 +15,7 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault()
-    const url = 'https://127.0.0.1:5000/user/register'
+    const url = 'https://fresh-farm.herokuapp.com/user/register'
 
     let data = {
       email,
@@ -73,7 +73,7 @@ export default function Register() {
           </div>
 
           <div className="login-question">
-            <a href="https://127.0.0.1:5000/login/facebook">Login by Facebook</a>
+            <a href="https://fresh-farm.herokuapp.com/login/facebook">Login by Facebook</a>
           </div>
         </form>
       </div>

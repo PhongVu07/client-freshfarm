@@ -19,7 +19,7 @@ export default function StoreProduct(props) {
   }, []);
 
   const getStoreProduct = async () => {
-    const url = `https://127.0.0.1:5000/user/store/product`;
+    const url = `https://fresh-farm.herokuapp.com/user/store/product`;
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function StoreProduct(props) {
 
   const handleDeleteStoreProduct = async id => {
     console.log("detele");
-    const url = `https://127.0.0.1:5000/user/store/${id}`;
+    const url = `https://fresh-farm.herokuapp.com/user/store/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
       mode: "cors",

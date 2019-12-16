@@ -10,7 +10,7 @@ export default function EditStoreProduct(props) {
 
   const handleSave = async e => {
     e.preventDefault();
-    const url = `https://127.0.0.1:5000/product/${edittingProduct.id}/edit`;
+    const url = `https://fresh-farm.herokuapp.com/product/${edittingProduct.id}/edit`;
     let data = edittingProduct;
     const response = await fetch(url, {
       method: "POST",

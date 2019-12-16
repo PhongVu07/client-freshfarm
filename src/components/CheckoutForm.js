@@ -35,7 +35,7 @@ class CheckoutForm extends Component {
       token: token.id,
       total_amount: this.props.amount
     };
-    let response = await fetch("https://127.0.0.1:5000/user/charge", {
+    let response = await fetch("https://fresh-farm.herokuapp.com/user/charge", {
       method: "POST",
       headers: {
         Accept: "application/json",

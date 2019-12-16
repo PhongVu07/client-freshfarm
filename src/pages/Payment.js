@@ -12,7 +12,7 @@ export default function User(props) {
 
   const handleSave = async (e) => {
     e.preventDefault()
-    const url = 'https://127.0.0.1:5000/user/change_profile'
+    const url = 'https://fresh-farm.herokuapp.com/user/change_profile'
     let data = currentUser
     const response = await fetch(url, {
       method : 'POST',
