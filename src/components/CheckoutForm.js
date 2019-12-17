@@ -31,6 +31,7 @@ class CheckoutForm extends Component {
   async submit(ev) {
     ev.preventDefault();
     let { token } = await this.props.stripe.createToken({ name: "Name" });
+    console.log('token', token);
     let data = {
       token: token.id,
       total_amount: this.props.amount

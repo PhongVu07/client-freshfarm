@@ -12,7 +12,7 @@ export default function StoreBusiness(props) {
   const [record, setRecord] = useState(null);
   const [rating, setRating] = useState(null);
   
-    console.log(rating, 'rating');
+    console.log("rating:", rating, "record:", record);
   useEffect(() => {
     getRecord();
   }, []);
