@@ -112,18 +112,18 @@ export default function Navibar(props) {
               onClick={() => exit()}
             />
           </div>
-          <div className="col-md-9 d-flex align-items-center">
+          <div className="col-md-9 d-flex align-items-center hidden-xs">
             <div className="input-group md-form form-sm form-2 pl-0">
               <input
-                className="form-control my-0 py-1 lime-border"
+                className="form-control my-0 py-1 lime-border hidden-xs"
                 type="text"
                 placeholder="Search product"
                 aria-label="Search"
                 onChange={e=>setQuery(e.target.value)}
               />
-              <div className="input-group-append">
+              <div className="input-group-append hidden-xs">
                 <span
-                  className="input-group-text lime lighten-2"
+                  className="input-group-text lime lighten-2 hidden-xs"
                   id="basic-text1"
                   onClick={handleQuery}
                 >
@@ -131,7 +131,7 @@ export default function Navibar(props) {
                 </span>
               </div>
 
-              <Link to="/user/cart" className="d-flex justify-content-center align-items-center col-md-1 cart-nav">
+              <Link to="/user/cart" className="d-flex justify-content-center align-items-center col-md-1 cart-nav hidden-xs">
                   <img src={cart} alt="cart" className="cart-icon-nav" />
                   <div className="cart-num-nav">
                     {props.numItemInCart && props.numItemInCart.length}
