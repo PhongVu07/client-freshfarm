@@ -55,7 +55,7 @@ export default function CommentModal(props) {
   }
   return (
     <div>
-      <button onClick={()=>setIsOpen(true)}>Open Modal</button>
+      <button onClick={()=>setIsOpen(true)}>Rate</button>
       <Modal
         isOpen={isOpen}
         onRequestClose={()=>setIsOpen(false)}
@@ -71,7 +71,7 @@ export default function CommentModal(props) {
           />
           <textarea rows="3" value={userComment} onChange={e=> setUserComment(e.target.value)}></textarea>
         </form>
-        <button onClick={handleNewRating}>close</button>
+        <button onClick={handleNewRating}>Confirm rating</button>
       </Modal>
     </div>
   );

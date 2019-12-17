@@ -26,6 +26,7 @@ export default function Product(props) {
   const [boughtThisProduct, setBoughtThisProduct] = useState(false);
   const [starsSelected, setStarSelected] = useState(0);
 
+  console.log(boughtThisProduct, 'buoght?');
   useEffect(() => {
     getProduct(productId);
     getRating(productId);
@@ -62,10 +63,11 @@ export default function Product(props) {
     const boughtProductIds =
       props.order &&
       props.order
-        .filter(el => el.order_status === "Delivering")
+        .filter(el => el.order_status === "Proceeding")
         .map(el => el.product_id);
     console.log(boughtProductIds, 'ids');
-    setBoughtThisProduct(boughtProductIds && boughtProductIds.includes(productId));
+    console.log(productId);
+    setBoughtThisProduct(boughtProductIds && boughtProductIds.filter(el=>el=productId) != null);
   };
 
   const handleInputChange = value => {
@@ -230,6 +232,7 @@ export default function Product(props) {
               setCurrentUserRating={setCurrentUserRating}
               getRating={getRating}
               productId={productId}
+              contentLabel="Rate"
             />
           ) : (
             <div />
