@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useHistory, Link, useParams } from "react-router-dom";
 import Navibar from "../components/Navibar";
-
+import {Alert} from 'react-bootstrap'
 import "../css/user.css";
 import UserSideBar from "../components/UserSideBar";
 
 export default function User(props) {
   const currentUser = props.currentUser && props.currentUser;
   const setCurrentUser = props.setCurrentUser;
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleSave = async e => {
     e.preventDefault();
-    const url = "https://fresh-farm.herokuapp.com/user/change_profile";
+    const url = "https://127.0.0.1:5000/user/change_profile";
     let data = currentUser;
     const response = await fetch(url, {
       method: "POST",
@@ -25,7 +25,7 @@ export default function User(props) {
     });
     const test = await response.json();
     if (test.state === "success") {
-      alert("saved");
+      setShowAlert(true)
     } else {
       alert("Wrong username or password");
     }
@@ -40,6 +40,7 @@ export default function User(props) {
         filteredProduct={props.filteredProduct}
         setFilteredProduct={props.setFilteredProduct}
       />
+      {showAlert ? <Alert onClose={() => setShowAlert(false)} variant={'success'} dismissible>Updated your profile!</Alert> : <></>}
 
       <div className="container mt-4 mb-3">
         <div className="row">

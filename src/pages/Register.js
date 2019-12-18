@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import {Alert} from 'react-bootstrap'
 import "../css/login.css";
 import fflogo from "../img/fflogo.png";
 
@@ -8,6 +9,7 @@ export default function Register() {
   const [email, setEmail] = useState(null)
   const [userName, setUserName] = useState(null)
   const [password, setPassword] = useState(null)
+  const [showAlert, setShowAlert] = useState(false)
 
   function exit() {
     history.push("/");
@@ -15,7 +17,7 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault()
-    const url = 'https://fresh-farm.herokuapp.com/user/register'
+    const url = 'https://127.0.0.1:5000/user/register'
 
     let data = {
       email,
@@ -30,7 +32,7 @@ export default function Register() {
       body : JSON.stringify(data)
     });
     if (response.ok) {
-      alert('Sign up successful')
+      setShowAlert(true)
       history.push("/login")
     }
   }
@@ -47,6 +49,7 @@ export default function Register() {
           />
         </div>
       </nav>
+      {showAlert ? <Alert onClose={() => setShowAlert(false)} variant={'success'} dismissible>Added to cart</Alert> : <></>}
 
       <div className="login-panel">
         <form onSubmit={handleRegister} className="login-form col-md-4 col-12">
@@ -73,7 +76,7 @@ export default function Register() {
           </div>
 
           <div className="login-question">
-            <a href="https://fresh-farm.herokuapp.com/login/facebook">Login by Facebook</a>
+            <a href="https://127.0.0.1:5000/login/facebook">Login by Facebook</a>
           </div>
         </form>
       </div>

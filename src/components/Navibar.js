@@ -14,7 +14,7 @@ export default function Navibar(props) {
 
   // console.log(props.currentUser, 'current user navibar');
   const handleLogOut = async () => {
-    const res = await fetch("https://fresh-farm.herokuapp.com/user/logout", {
+    const res = await fetch("https://127.0.0.1:5000/user/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default function Navibar(props) {
   };
 
   const handleQuery = async () => {
-    const url = `https://fresh-farm.herokuapp.com/product/query`;
+    const url = `https://127.0.0.1:5000/product/query`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -3,23 +3,25 @@ import Navibar from "../components/Navibar";
 import "../css/user.css";
 
 import UserSideBar from "../components/UserSideBar";
-import StoreChart from "../components/StoreChart";
 import StoreSaleChart from "../components/StoreSaleChart";
 import StoreRating from "../components/StoreRating";
+import PieChart from "../components/PieChart"
 
 
 export default function StoreBusiness(props) {
   const currentUser = props.currentUser && props.currentUser;
   const [record, setRecord] = useState(null);
   const [rating, setRating] = useState(null);
+  const [viewCount, setViewCount] = useState(0)
+  const [saleCount, setSaleCount] = useState(0)
   
-  console.log("rating:", rating, "record:", record);
+  // console.log("view:", viewCount, "sale:", saleCount);
   useEffect(() => {
     getRecord();
   }, []);
 
   const getRecord = async () => {
-    const url = `https://fresh-farm.herokuapp.com/product/get_sale`;
+    const url = `https://127.0.0.1:5000/product/get_sale`;
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +32,8 @@ export default function StoreBusiness(props) {
       const data = await response.json();
       setRecord(data.sale);
       setRating(data.rating);
+      setViewCount(data.view_count);
+      setSaleCount(data.sale_count)
       return;
     }
     console.log("get record error");
@@ -57,6 +61,11 @@ export default function StoreBusiness(props) {
             <div className="my-account-cart-session col-md-12">
               <StoreRating rating={rating}/>
             </div>
+
+            <div className="my-account-cart-session col-md-12">
+              <PieChart viewCount={viewCount} saleCount={saleCount}/>
+            </div>
+
 
           </div>
         </div>

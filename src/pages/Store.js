@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
 import Navibar from "../components/Navibar";
+import {Alert} from 'react-bootstrap'
 import "../css/user.css";
 import Moment from 'react-moment';
 
@@ -12,14 +12,15 @@ export default function StoreProduct(props) {
   const currentUser = props.currentUser && props.currentUser;
   const [storeProduct, setStoreProduct] = useState(null);
   const [edittingProduct, setEdittingProduct] = useState(null);
-  console.log(storeProduct, "products");
+  const [showSaveProductAlert, setShowSaveProductAlert] = useState(false)
+  // console.log(storeProduct, "products");
 
   useEffect(() => {
     getStoreProduct();
   }, []);
 
   const getStoreProduct = async () => {
-    const url = `https://fresh-farm.herokuapp.com/user/store/product`;
+    const url = `https://127.0.0.1:5000/user/store/product`;
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -35,25 +36,6 @@ export default function StoreProduct(props) {
     }
   };
 
-  const handleDeleteStoreProduct = async id => {
-    console.log("detele");
-    const url = `https://fresh-farm.herokuapp.com/user/store/${id}`;
-    const response = await fetch(url, {
-      method: "DELETE",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${sessionStorage.getItem("token")}`
-      }
-    });
-    if (response.ok) {
-      getStoreProduct();
-    } else {
-      console.log("order error");
-      alert("Error");
-    }
-  };
-
   return (
     <div className="container-fluid user-page">
       <Navibar
@@ -63,6 +45,8 @@ export default function StoreProduct(props) {
         filteredProduct={props.filteredProduct}
         setFilteredProduct={props.setFilteredProduct}
       />
+      {showSaveProductAlert ? <Alert onClose={() => setShowSaveProductAlert(false)} variant={'success'} dismissible>Successful edit product</Alert> : <></>}
+      
 
       <div className="container mt-4 mb-3">
         <div className="row">
@@ -159,6 +143,7 @@ export default function StoreProduct(props) {
               edittingProduct={edittingProduct}
               setEdittingProduct={setEdittingProduct}
               getStoreProduct={getStoreProduct}
+              setShowSaveProductAlert={setShowSaveProductAlert}
             />
           </div>
         </div>

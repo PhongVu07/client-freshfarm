@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/user.css";
-
 
 export default function EditStoreProduct(props) {
   const edittingProduct = props.edittingProduct
   const setEdittingProduct = props.setEdittingProduct
   const getStoreProduct = props.getStoreProduct
-  console.log(edittingProduct, 'current product');
+  const setShowSaveProductAlert = props.setShowSaveProductAlert
+  // console.log(edittingProduct, 'current product');
 
   const handleSave = async e => {
     e.preventDefault();
-    const url = `https://fresh-farm.herokuapp.com/product/${edittingProduct.id}/edit`;
+    const url = `https://127.0.0.1:5000/product/${edittingProduct.id}/edit`;
     let data = edittingProduct;
     const response = await fetch(url, {
       method: "POST",
@@ -24,7 +24,7 @@ export default function EditStoreProduct(props) {
     });
     const test = await response.json();
     if (test.state === "success") {
-      alert("saved");
+      setShowSaveProductAlert(true)
       getStoreProduct();
     } else {
       alert("Wrong username or password");

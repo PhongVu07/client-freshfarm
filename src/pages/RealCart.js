@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 import Navibar from "../components/Navibar";
+// import {Alert} from 'react-bootstrap'
 import "../css/user.css";
 
 import { Elements } from "react-stripe-elements";
 import CheckoutForm from "../components/CheckoutForm";
 import UserSideBar from "../components/UserSideBar";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 export default function Cart(props) {
   const currentUser = props.currentUser && props.currentUser;
@@ -13,7 +15,11 @@ export default function Cart(props) {
   const [orderItems, setOrderItems] = useState(null);
   const totalAmount =
     orderItems && orderItems.reduce((total, el) => total + el.total_price, 0);
-    console.log(orderItems);
+  // console.log(orderItems);
+  // const [showSaveUser, setShowSaveUser] = useState(false)
+
+  const history = useHistory();
+
   useEffect(() => {
     props.getOrder();
     getOrderItem();
@@ -32,7 +38,7 @@ export default function Cart(props) {
 
   const handleDeleteOrderItem = async id => {
     console.log("detele");
-    const url = `https://fresh-farm.herokuapp.com/user/delete_order_item/${id}`;
+    const url = `https://127.0.0.1:5000/user/delete_order_item/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
       mode: "cors",
@@ -49,27 +55,30 @@ export default function Cart(props) {
     }
   };
 
-  const handleSave = async (e) => {
-    const url = 'https://fresh-farm.herokuapp.com/user/change_profile'
-    let data = currentUser
+  const handleSave = async e => {
+    const url = "https://127.0.0.1:5000/user/change_profile";
+    let data = currentUser;
     const response = await fetch(url, {
-      method : 'POST',
-      Access : 'cors',
+      method: "POST",
+      Access: "cors",
       headers: {
-        'Accept' : 'application/json',
-        'Content-Type': 'text/plain',
-        Authorization: `Token ${sessionStorage.getItem('token')}`
+        Accept: "application/json",
+        "Content-Type": "text/plain",
+        Authorization: `Token ${sessionStorage.getItem("token")}`
       },
-      body : JSON.stringify(data)
+      body: JSON.stringify(data)
     });
-    const test = await response.json()
-    if (test.state === 'success') {
-      alert("saved")
+    const test = await response.json();
+    if (test.state === "success") {
+      // history.push('/user/invoice/proceeding')
     } else {
-      alert("Wrong username or password")
+      alert("Wrong username or password");
     }
-  }
+  };
 
+  const goToProduct = id => {
+    history.push(`/product/${id}`);
+  };
   return (
     <div className="container-fluid user-page">
       <Navibar
@@ -79,10 +88,11 @@ export default function Cart(props) {
         filteredProduct={props.filteredProduct}
         setFilteredProduct={props.setFilteredProduct}
       />
-
+      {/* {showSaveProductAlert ? <Alert onClose={() => setShowSaveUser(false)} variant={'success'} dismissible>Purchase complete!</Alert> : <></>} */}
+      
       <div className="container mt-4 mb-3">
         <div className="row">
-          <UserSideBar currentUser={currentUser}/>
+          <UserSideBar currentUser={currentUser} />
 
           <div className="my-account-cart-session col-md-10">
             <div>
@@ -126,6 +136,9 @@ export default function Cart(props) {
                               <img
                                 src={orderItem.img_url}
                                 className="order-item-img"
+                                onClick={() =>
+                                  goToProduct(orderItem.product_id)
+                                }
                               />
                             </th>
                             <td>{orderItem.product_id}</td>
@@ -138,7 +151,7 @@ export default function Cart(props) {
                                 handleDeleteOrderItem(orderItem.id)
                               }
                             >
-                              Delete
+                              <FaRegTrashAlt />
                             </td>
                           </tr>
                         );
@@ -159,7 +172,9 @@ export default function Cart(props) {
                 <div className="cart-page-footer-row1">
                   <div className="d-flex align-item-center">
                     <div className="cart-page-footer-price">Total amount:</div>
-                    <div className="cart-page-footer-price2">{totalAmount}₫</div>
+                    <div className="cart-page-footer-price2">
+                      {totalAmount}₫
+                    </div>
                   </div>
                   <div className="ml-4">
                     <button

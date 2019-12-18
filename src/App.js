@@ -10,13 +10,11 @@ import Product from "./pages/Product";
 import User from "./pages/User";
 import Invoice from "./pages/Invoice";
 import RealCart from "./pages/RealCart";
-import Payment from "./pages/Payment";
 import Store from "./pages/Store";
 import Store2 from "./pages/Store2";
 import Footer from "./components/Footer";
 
 import { StripeProvider } from "react-stripe-elements";
-
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,7 +24,7 @@ function App() {
   const [filteredProduct, setFilteredProduct] = useState(null);
   // console.log(fruit, vegetable, seasoning, 'category product');
   const [order, setOrder] = useState(null);
-  const [numItemInCart, setNumItemInCart] = useState(0)
+  const [numItemInCart, setNumItemInCart] = useState(0);
   // console.log(order, 'order');
   const existingToken = sessionStorage.getItem("token");
   const accessToken =
@@ -42,19 +40,20 @@ function App() {
     getCategoryProdcut(2);
     getCategoryProdcut(3);
   }, []);
-  
+
   useEffect(() => {
     getNumItemInCart();
-  }, [order])
+  }, [order]);
 
   const getNumItemInCart = () => {
     let shallowCopy = order && order.slice();
-    let inCartItem = shallowCopy && shallowCopy.filter(el => el.order_status === "In cart");
-    setNumItemInCart(inCartItem)
-  }
+    let inCartItem =
+      shallowCopy && shallowCopy.filter(el => el.order_status === "In cart");
+    setNumItemInCart(inCartItem);
+  };
 
   const getCurrentUser = async () => {
-    const url = `https://fresh-farm.herokuapp.com/user/get_user`;
+    const url = `https://127.0.0.1:5000/user/get_user`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {
@@ -64,10 +63,10 @@ function App() {
     });
     if (response.ok) {
       const data = await response.json();
-      if (data.id !== 'Anomynous') {
-      sessionStorage.setItem("token", token);
-      setCurrentUser(data);
-      getOrder()
+      if (data.id !== "Anomynous") {
+        sessionStorage.setItem("token", token);
+        setCurrentUser(data);
+        getOrder();
       } else {
         sessionStorage.removeItem("token");
       }
@@ -78,7 +77,7 @@ function App() {
   };
 
   const getCategoryProdcut = async id => {
-    const url = `https://fresh-farm.herokuapp.com/product/category/${id}`;
+    const url = `https://127.0.0.1:5000/product/category/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     if (id === 1) {
@@ -91,7 +90,7 @@ function App() {
   };
 
   const getOrder = async () => {
-    const url = `https://fresh-farm.herokuapp.com/user/get_order`;
+    const url = `https://127.0.0.1:5000/user/get_order`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {
@@ -162,16 +161,16 @@ function App() {
               />
             </Route>
             <Route path="/user/profile">
-              <User 
+              <User
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 numItemInCart={numItemInCart}
                 filteredProduct={filteredProduct}
                 setFilteredProduct={setFilteredProduct}
-                />
+              />
             </Route>
             <Route path="/category/:category">
-              <Categories 
+              <Categories
                 fruit={fruit}
                 vegetable={vegetable}
                 seasoning={seasoning}

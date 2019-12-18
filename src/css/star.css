@@ -66,8 +66,8 @@
     );
 }
 .star.selected {
-    background-color: orangered;
+    background-color:#F6E75C;
 }
 .star-sm.selected {
-  background-color: orangered;
+  background-color: #F6E75C;
 }

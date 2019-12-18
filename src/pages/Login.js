@@ -15,7 +15,7 @@ export default function Login(props) {
 
   const handleLogin = async e => {
     e.preventDefault();
-    const url = "https://fresh-farm.herokuapp.com/user/login";
+    const url = "https://127.0.0.1:5000/user/login";
     let data = {
       username: userName,
       password: password
@@ -84,7 +84,7 @@ export default function Login(props) {
             Don't have account? &nbsp;<Link className="sign-up-link" to="/register">Sign up</Link>
           </div>
           <div className="login-question mt-4">
-            <a className="login-by-facebook" href="https://fresh-farm.herokuapp.com/login/facebook">
+            <a className="login-by-facebook" href="https://127.0.0.1:5000/login/facebook">
               Login by Facebook
             </a>
           </div>

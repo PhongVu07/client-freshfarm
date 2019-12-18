@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navibar from "../components/Navibar";
+import {Alert} from 'react-bootstrap'
 import "../css/product.css";
 import { IoMdCheckmark } from "react-icons/io";
 import CheckoutForm from "../components/CheckoutForm";
@@ -20,16 +21,16 @@ export default function Product(props) {
     quantity: 0,
     total_price: 0
   });
-
   const [rating, setRating] = useState(null);
   const [currentUserRating, setCurrentUserRating] = useState(null);
   const [boughtThisProduct, setBoughtThisProduct] = useState(false);
   const [starsSelected, setStarSelected] = useState(0);
-
-  console.log(boughtThisProduct, "buoght?");
+  const [showAlert, setShowAlert] = useState(false)
+  // console.log(boughtThisProduct, "buoght?");
   useEffect(() => {
     getProduct(productId);
     getRating(productId);
+    viewCount(productId);
   }, []);
 
   useEffect(() => {
@@ -37,13 +38,13 @@ export default function Product(props) {
   }, [props.order]);
 
   const getProduct = async id => {
-    const resp = await fetch(`https://fresh-farm.herokuapp.com/product/${id}`);
+    const resp = await fetch(`https://127.0.0.1:5000/product/${id}`);
     const data = await resp.json();
     setProduct(data);
   };
 
   const getRating = async id => {
-    const url = `https://fresh-farm.herokuapp.com/product/${id}/rating`;
+    const url = `https://127.0.0.1:5000/product/${id}/rating`;
     const response = await fetch(url);
     const data = await response.json();
     setRating(data);
@@ -97,7 +98,7 @@ export default function Product(props) {
 
   const handleOrderItem = async e => {
     e.preventDefault();
-    const url = "https://fresh-farm.herokuapp.com/user/create_order_item";
+    const url = "https://127.0.0.1:5000/user/create_order_item";
     let data = orderItem;
     const response = await fetch(url, {
       method: "POST",
@@ -112,12 +113,20 @@ export default function Product(props) {
     if (response.ok) {
       const data = await response.json();
       props.setOrder(data.order_items);
-      alert("added to cart");
-    } else {
+      setShowAlert(true)
+    } else { 
       // console.log("order error");
       alert("Error");
     }
   };
+
+  const viewCount = async id => {
+    const url = `https://127.0.0.1:5000/product/${id}/view_count`;
+    const response = await fetch(url);
+    if (response.ok) return console.log("view counted");
+    console.log("error view count");
+  };
+
   return (
     <div className="container-fluid">
       <Navibar
@@ -127,6 +136,8 @@ export default function Product(props) {
         filteredProduct={props.filteredProduct}
         setFilteredProduct={props.setFilteredProduct}
       />
+      {showAlert ? <Alert onClose={() => setShowAlert(false)} variant={'success'} dismissible>Added to cart</Alert> : <></>}
+
       <div className="container mt-4 pt-4 pb-4 bgc-white">
         <div className="row">
           <div className="col-md-4 col-12">
@@ -324,7 +335,7 @@ export default function Product(props) {
               <Elements>
                 <CheckoutForm
                   amount={orderItem.total_price}
-                  setCurrentUser = {setCurrentUser}
+                  setCurrentUser={setCurrentUser}
                   getOrder={props.getOrder}
                   setOrder={props.setOrder}
                 />

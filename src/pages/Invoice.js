@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 import Navibar from "../components/Navibar";
 import "../css/user.css";
-
-import { Elements } from "react-stripe-elements";
-import CheckoutForm from "../components/CheckoutForm";
 import UserSideBar from "../components/UserSideBar";
 
 export default function Invoice(props) {
@@ -12,6 +9,7 @@ export default function Invoice(props) {
   const setCurrentUser = props.setCurrentUser;
   const { order_status } = useParams();
   const [orderItems, setOrderItems] = useState(null);
+  const history = useHistory()
 
   useEffect(() => {
     props.getOrder();
@@ -49,6 +47,10 @@ export default function Invoice(props) {
       );
   };
 
+  const goToProduct = (id) => {
+    history.push(`/product/${id}`)
+  }
+  
   return (
     <div className="container-fluid user-page">
       <Navibar
@@ -137,6 +139,7 @@ export default function Invoice(props) {
                               <img
                                 src={orderItem.img_url}
                                 className="order-item-img"
+                                onClick={()=>goToProduct(orderItem.product_id)}
                               />
                             </th>
                             <td>{orderItem.product_id}</td>
