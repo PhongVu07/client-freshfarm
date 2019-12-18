@@ -7,6 +7,7 @@ import StoreChart from "../components/StoreChart";
 import StoreSaleChart from "../components/StoreSaleChart";
 import StoreRating from "../components/StoreRating";
 
+
 export default function StoreBusiness(props) {
   const currentUser = props.currentUser && props.currentUser;
   const [record, setRecord] = useState(null);
@@ -56,6 +57,7 @@ export default function StoreBusiness(props) {
             <div className="my-account-cart-session col-md-12">
               <StoreRating rating={rating}/>
             </div>
+
           </div>
         </div>
       </div>
