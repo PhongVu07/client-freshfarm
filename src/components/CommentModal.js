@@ -33,7 +33,7 @@ export default function CommentModal(props) {
   };
 
   const handleNewRating = async () => {
-    const url = `https://127.0.0.1:5000/product/${props.productId}/rating`;
+    const url = `https://fresh-farm.herokuapp.com/product/${props.productId}/rating`;
     const data = {
       userComment,
       userRating

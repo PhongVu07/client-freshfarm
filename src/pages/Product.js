@@ -38,13 +38,13 @@ export default function Product(props) {
   }, [props.order]);
 
   const getProduct = async id => {
-    const resp = await fetch(`https://127.0.0.1:5000/product/${id}`);
+    const resp = await fetch(`https://fresh-farm.herokuapp.com/product/${id}`);
     const data = await resp.json();
     setProduct(data);
   };
 
   const getRating = async id => {
-    const url = `https://127.0.0.1:5000/product/${id}/rating`;
+    const url = `https://fresh-farm.herokuapp.com/product/${id}/rating`;
     const response = await fetch(url);
     const data = await response.json();
     setRating(data);
@@ -98,7 +98,7 @@ export default function Product(props) {
 
   const handleOrderItem = async e => {
     e.preventDefault();
-    const url = "https://127.0.0.1:5000/user/create_order_item";
+    const url = "https://fresh-farm.herokuapp.com/user/create_order_item";
     let data = orderItem;
     const response = await fetch(url, {
       method: "POST",
@@ -121,7 +121,7 @@ export default function Product(props) {
   };
 
   const viewCount = async id => {
-    const url = `https://127.0.0.1:5000/product/${id}/view_count`;
+    const url = `https://fresh-farm.herokuapp.com/product/${id}/view_count`;
     const response = await fetch(url);
     if (response.ok) return console.log("view counted");
     console.log("error view count");

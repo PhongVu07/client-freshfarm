@@ -53,7 +53,7 @@ function App() {
   };
 
   const getCurrentUser = async () => {
-    const url = `https://127.0.0.1:5000/user/get_user`;
+    const url = `https://fresh-farm.herokuapp.com/user/get_user`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {
@@ -77,7 +77,7 @@ function App() {
   };
 
   const getCategoryProdcut = async id => {
-    const url = `https://127.0.0.1:5000/product/category/${id}`;
+    const url = `https://fresh-farm.herokuapp.com/product/category/${id}`;
     const resp = await fetch(url);
     const data = await resp.json();
     if (id === 1) {
@@ -90,7 +90,7 @@ function App() {
   };
 
   const getOrder = async () => {
-    const url = `https://127.0.0.1:5000/user/get_order`;
+    const url = `https://fresh-farm.herokuapp.com/user/get_order`;
     const response = await fetch(url, {
       mode: "cors",
       headers: {

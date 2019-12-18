@@ -20,7 +20,7 @@ export default function StoreProduct(props) {
   }, []);
 
   const getStoreProduct = async () => {
-    const url = `https://127.0.0.1:5000/user/store/product`;
+    const url = `https://fresh-farm.herokuapp.com/user/store/product`;
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
