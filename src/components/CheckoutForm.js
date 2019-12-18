@@ -27,7 +27,9 @@ class CheckoutForm extends Component {
     this.state = { complete: false };
     this.submit = this.submit.bind(this);
   }
-
+  handleSave = this.props.handleSave
+  setCurrentUser = this.props.setCurrentUser
+  
   async submit(ev) {
     ev.preventDefault();
     let { token } = await this.props.stripe.createToken({ name: "Name" });
@@ -51,7 +53,7 @@ class CheckoutForm extends Component {
       const data = await response.json();
       this.props.setOrder(data.order_items);
       this.props.getOrder();
-      this.props.handleSave();
+      this.handleSave();
       console.log("Purchase Complete!");
     } else {
       console.log("order error");
@@ -60,7 +62,7 @@ class CheckoutForm extends Component {
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete</h1>;
+    if (this.state.complete) return <h5>Purchase Complete!</h5>;
 
     return (
       <div className="checkout">

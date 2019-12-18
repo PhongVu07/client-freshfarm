@@ -56,14 +56,6 @@ export default function Navibar(props) {
       <div className="container">
         <div className="top-navibar">
           <div className="">
-            {/* <div className="row">
-              <a href="" className="sm-link-home-nav pr-2 border-right">
-                Store login
-              </a>
-              <a href="" className="sm-link-home-nav pl-2">
-                Connect
-              </a>
-            </div> */}
           </div>
           <div className="">
             <div className="row">
@@ -115,7 +107,7 @@ export default function Navibar(props) {
           <div className="col-md-9 d-flex align-items-center hidden-xs">
             <div className="input-group md-form form-sm form-2 pl-0">
               <input
-                className="form-control my-0 py-1 lime-border hidden-xs"
+                className="form-control my-0 py-1 lime-border hidden-xs col-md-10"
                 type="text"
                 placeholder="Search product"
                 aria-label="Search"
@@ -131,7 +123,7 @@ export default function Navibar(props) {
                 </span>
               </div>
 
-              <Link to="/user/cart" className="d-flex justify-content-center align-items-center col-md-1 cart-nav hidden-xs">
+              <Link to="/user/cart" className="d-flex ml-5 justify-content-center align-items-center col-md-1 cart-nav hidden-xs">
                   <img src={cart} alt="cart" className="cart-icon-nav" />
                   <div className="cart-num-nav">
                     {props.numItemInCart && props.numItemInCart.length}

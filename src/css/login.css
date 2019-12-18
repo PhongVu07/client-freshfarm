@@ -89,4 +89,17 @@
 .login-btn2:focus {
     outline: none;
 }
-
+.login-question {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.login-by-facebook{
+    color: white;
+    font-weight: 600;
+    background-color: #4267B2;
+    padding: 6px 15px 6px 15px;
+}
+.sign-up-link {
+    color: green;
+}

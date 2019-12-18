@@ -75,7 +75,7 @@ p {
   cursor: auto;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 600px) {
   .hidden-xs {
     display: none !important;
   }

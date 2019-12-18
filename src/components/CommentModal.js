@@ -11,7 +11,8 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    width: "500px"
   }
 };
 
@@ -49,29 +50,30 @@ export default function CommentModal(props) {
         });
       if (response.ok) {
           props.getRating(props.productId)
+          setIsOpen(false)
           return
       }
       alert("Comment problem")
   }
   return (
     <div>
-      <button onClick={()=>setIsOpen(true)}>Rate</button>
+      <button className="ff-primary-btn" onClick={()=>setIsOpen(true)}>Rate</button>
       <Modal
         isOpen={isOpen}
         onRequestClose={()=>setIsOpen(false)}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={()=>setIsOpen(false)}>close</button>
-        <div>I am a modal</div>
+        {/* <button onClick={()=>setIsOpen(false)}>close</button>
+        <div>I am a modal</div> */}
         <form>
           <StarRating 
             starsSelected={userRating}
             setStarSelected={setUserRating}
           />
-          <textarea rows="3" value={userComment} onChange={e=> setUserComment(e.target.value)}></textarea>
+          <textarea rows="3" className="mt-3 mb-3 col-12 col-md-12" value={userComment} onChange={e=> setUserComment(e.target.value)}></textarea>
         </form>
-        <button onClick={handleNewRating}>Confirm rating</button>
+        <button className="ff-primary-btn" onClick={handleNewRating}>Confirm rating</button>
       </Modal>
     </div>
   );

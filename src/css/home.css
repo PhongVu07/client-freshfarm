@@ -29,7 +29,7 @@
 }
 
 .bigfflogo {
-  height: 60px;
+  height: 50px;
   position: relative;
   left: -15px;
   cursor: pointer;
@@ -104,6 +104,8 @@
   margin-left: 10px;
   cursor: pointer;
   padding-left: 5px;
+  min-width: 78px;
+  max-width: 78px;
 }
 .cart-num-nav {
   color: white;

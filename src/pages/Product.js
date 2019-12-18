@@ -26,7 +26,7 @@ export default function Product(props) {
   const [boughtThisProduct, setBoughtThisProduct] = useState(false);
   const [starsSelected, setStarSelected] = useState(0);
 
-  console.log(boughtThisProduct, 'buoght?');
+  console.log(boughtThisProduct, "buoght?");
   useEffect(() => {
     getProduct(productId);
     getRating(productId);
@@ -59,15 +59,17 @@ export default function Product(props) {
   };
 
   const getBuyerId = () => {
-    console.log(props.order, 'order');
+    console.log(props.order, "order");
     const boughtProductIds =
       props.order &&
       props.order
         .filter(el => el.order_status === "Proceeding")
         .map(el => el.product_id);
-    console.log(boughtProductIds, 'ids');
-    console.log(productId);
-    setBoughtThisProduct(boughtProductIds && boughtProductIds.filter(el=>el=productId) != null);
+    console.log(boughtProductIds, "ids");
+    console.log(typeof productId, "productID");
+    setBoughtThisProduct(
+      boughtProductIds && boughtProductIds.includes(parseInt(productId))
+    );
   };
 
   const handleInputChange = value => {
@@ -225,18 +227,22 @@ export default function Product(props) {
 
       <div className="container pl-0 pr-0">
         <div className="product-rating">
-          <div className="product-rating-header">PRODUCT RATING</div>
-          {boughtThisProduct ? (
-            <CommentModal
-              currentUserRating={currentUserRating}
-              setCurrentUserRating={setCurrentUserRating}
-              getRating={getRating}
-              productId={productId}
-              contentLabel="Rate"
-            />
-          ) : (
-            <div />
-          )}
+          <div className="product-rating-header-container col-md-12">
+            <div className="product-rating-header">PRODUCT RATING</div>
+            <div className="product-rating-btn">
+              {boughtThisProduct ? (
+                <CommentModal
+                  currentUserRating={currentUserRating}
+                  setCurrentUserRating={setCurrentUserRating}
+                  getRating={getRating}
+                  productId={productId}
+                  contentLabel="Rate"
+                />
+              ) : (
+                <div />
+              )}
+            </div>
+          </div>
 
           <div className="product-rating-overview">
             <div className="product-rating-overview-brief">
@@ -318,6 +324,7 @@ export default function Product(props) {
               <Elements>
                 <CheckoutForm
                   amount={orderItem.total_price}
+                  setCurrentUser = {setCurrentUser}
                   getOrder={props.getOrder}
                   setOrder={props.setOrder}
                 />

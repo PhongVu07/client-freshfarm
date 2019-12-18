@@ -50,7 +50,6 @@ export default function Cart(props) {
   };
 
   const handleSave = async (e) => {
-    e.preventDefault()
     const url = 'https://fresh-farm.herokuapp.com/user/change_profile'
     let data = currentUser
     const response = await fetch(url, {

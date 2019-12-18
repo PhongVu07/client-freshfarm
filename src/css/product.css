@@ -62,6 +62,10 @@
     margin-top: 20px;
     padding : 20px 15px 10px 15px;
 }
+.product-rating-header-container {
+    display: flex;
+    justify-content: space-between;
+}
 .product-rating-header {
     font-size: 1.125rem;
     color: rgba(0, 0, 0, 0.87);
