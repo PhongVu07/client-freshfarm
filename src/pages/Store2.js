@@ -16,6 +16,7 @@ export default function StoreBusiness(props) {
   const [saleCount, setSaleCount] = useState(0)
   
   // console.log("view:", viewCount, "sale:", saleCount);
+  // console.log("sale:", record, "rating:", rating);
   useEffect(() => {
     getRecord();
   }, []);
@@ -30,7 +31,7 @@ export default function StoreBusiness(props) {
     });
     if (response.ok) {
       const data = await response.json();
-      setRecord(data.sale);
+      setRecord(data.sale.sort((a,b)=>new Date(a.date)- new Date(b.date)));
       setRating(data.rating);
       setViewCount(data.view_count);
       setSaleCount(data.sale_count)

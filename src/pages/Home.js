@@ -7,7 +7,7 @@ import HomeProduct from "../components/HomeProduct";
 export default function Home(props) {
   const currentUser = props.currentUser;
   const setCurrentUser = props.setCurrentUser;
-  const limitFruit = props.fruit.slice().slice(18);
+  const limitFruit = props.fruit.slice().slice(19);
   const limitVegetable = props.vegetable.slice().slice(18);
   const limitSeasoning = props.seasoning.slice().slice(18);
 

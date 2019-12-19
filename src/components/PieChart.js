@@ -11,7 +11,7 @@ export default function StoreChart(props) {
   const getDataToShow = () => {
     if (props.saleCount) {
         const test = [["Data", "Count"]];
-        test.push(["View", props.viewCount-props.saleCount]);
+        test.push(["View without sale", props.viewCount-props.saleCount]);
         test.push(["Sale", props.saleCount])
         setDataToShow(test);
     }}

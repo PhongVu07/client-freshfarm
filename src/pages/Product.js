@@ -60,14 +60,14 @@ export default function Product(props) {
   };
 
   const getBuyerId = () => {
-    console.log(props.order, "order");
+    // console.log(props.order, "order");
     const boughtProductIds =
       props.order &&
       props.order
         .filter(el => el.order_status === "Proceeding")
         .map(el => el.product_id);
-    console.log(boughtProductIds, "ids");
-    console.log(typeof productId, "productID");
+    // console.log(boughtProductIds, "ids");
+    // console.log(typeof productId, "productID");
     setBoughtThisProduct(
       boughtProductIds && boughtProductIds.includes(parseInt(productId))
     );

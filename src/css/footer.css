@@ -11,6 +11,9 @@
     line-height: 1.4;
     letter-spacing: .08em;
 }
+.col-container {
+    padding-left: 8rem;
+}
 
 .menu-mav ul {
     padding-inline-start : initial !important;

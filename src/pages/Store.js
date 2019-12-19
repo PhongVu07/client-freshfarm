@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navibar from "../components/Navibar";
 import {Alert} from 'react-bootstrap'
+import { FiEdit2, FiEdit } from "react-icons/fi";
 import "../css/user.css";
 import Moment from 'react-moment';
 
@@ -109,7 +110,7 @@ export default function StoreProduct(props) {
                               data-toggle="modal"
                               data-target="#exampleModal"
                             >
-                              Edit
+                              <FiEdit2 />
                             </td>
                           </tr>
                         );
